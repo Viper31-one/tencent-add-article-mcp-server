@@ -58,6 +58,8 @@ Thumbs.db
 data/log/
 application-local.yml
 application-prod.yml
+application-dev.yml
+application-test.yml
 
 # Sensitive data
 *.key
@@ -66,3 +68,6 @@ application-prod.yml
 *.jks
 cookies.txt
 secrets.yml
+.env
+.env.local
+.env.production

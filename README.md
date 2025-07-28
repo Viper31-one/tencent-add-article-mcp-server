@@ -70,11 +70,23 @@ tencent-add-article-mcp-server/
 
 2. **配置认证信息**
    
-   在 `src/main/resources/application.yml` 中配置你的腾讯云开发者社区 Cookie：
-   ```yaml
-   tencent:
-     api:
-       cookie: "你的腾讯云开发者社区Cookie"
+   ⚠️ **重要**: 请选择以下任一方式配置你的腾讯云开发者社区 Cookie，**不要直接在代码中硬编码敏感信息**：
+
+   **方式一：使用本地配置文件（推荐）**
+   ```bash
+   # 复制配置文件模板
+   cp application-local.yml src/main/resources/application-local.yml
+   # 编辑配置文件，填入你的Cookie
+   ```
+
+   **方式二：使用环境变量**
+   ```bash
+   export TENCENT_API_COOKIE="你的腾讯云开发者社区Cookie"
+   ```
+
+   **方式三：使用系统属性**
+   ```bash
+   mvn spring-boot:run -Dtencent.api.cookie="你的Cookie"
    ```
 
 3. **编译项目**
@@ -93,6 +105,20 @@ tencent-add-article-mcp-server/
 2. 打开浏览器开发者工具 (F12)
 3. 在 Network 标签页中找到任意请求
 4. 复制请求头中的 `Cookie` 值
+
+### 🔒 安全配置说明
+
+为了确保敏感信息的安全性，项目采用了以下安全措施：
+
+- ✅ **本地配置文件**: `application-local.yml` 不会被提交到 Git
+- ✅ **环境变量支持**: 支持通过环境变量配置敏感信息
+- ✅ **系统属性支持**: 支持通过 JVM 参数配置
+- ✅ **Git 忽略**: 敏感配置文件已添加到 `.gitignore`
+
+**推荐配置方式**：
+1. 使用 `application-local.yml` 本地配置文件（最安全）
+2. 使用环境变量（适合容器化部署）
+3. 使用系统属性（适合临时测试）
 
 ## 📚 API 文档
 
@@ -149,6 +175,14 @@ curl -X POST http://localhost:8080/mcp/addArticle \
 
 ## 🔧 配置说明
 
+### 配置文件优先级
+
+Spring Boot 配置文件的加载优先级（从高到低）：
+1. `application-local.yml` (本地配置，不会被提交到Git)
+2. 环境变量
+3. 系统属性
+4. `application.yml` (默认配置)
+
 ### application.yml 配置项
 
 ```yaml
@@ -162,9 +196,11 @@ spring:
         version: 0.0.3
         stdio: true
 
+# 腾讯云开发者社区 API 配置
 tencent:
   api:
-    cookie: "你的腾讯云开发者社区Cookie"
+    # 支持环境变量和占位符
+    cookie: ${TENCENT_API_COOKIE:请配置你的Cookie}
 ```
 
 ### 环境变量配置
@@ -172,7 +208,22 @@ tencent:
 你也可以通过环境变量来配置：
 
 ```bash
+# Linux/macOS
 export TENCENT_API_COOKIE="你的Cookie"
+
+# Windows
+set TENCENT_API_COOKIE=你的Cookie
+```
+
+### 本地配置文件
+
+创建 `src/main/resources/application-local.yml`：
+
+```yaml
+# 本地配置文件 - 不会被提交到Git
+tencent:
+  api:
+    cookie: "你的腾讯云开发者社区Cookie"
 ```
 
 ## 🎯 功能特性详解
@@ -266,6 +317,7 @@ mvn spring-boot:run -Dspring-boot.run.jvmArguments="-Dlogging.level.com.viper31=
 - ✨ 添加详细的错误处理
 - ✨ 优化日志记录
 - 📝 完善项目文档
+- 🔒 增强安全性，移除硬编码的敏感信息
 
 ### v0.0.2
 - 🚀 初始版本发布
