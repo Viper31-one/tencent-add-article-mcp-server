@@ -64,7 +64,7 @@ tencent-add-article-mcp-server/
 
 1. **克隆项目**
    ```bash
-   git clone https://github.com/your-username/tencent-add-article-mcp-server.git
+   git clone https://github.com/Viper31-one/tencent-add-article-mcp-server.git
    cd tencent-add-article-mcp-server
    ```
 
@@ -256,7 +256,7 @@ mvn spring-boot:run -Dspring-boot.run.jvmArguments="-Dlogging.level.com.viper31=
 
 - 项目维护者: Viper31
 - 邮箱: [your-email@example.com]
-- 项目地址: [https://github.com/your-username/tencent-add-article-mcp-server]
+- 项目地址: [https://github.com/Viper31-one/tencent-add-article-mcp-server]
 
 ## 🔄 更新日志
 

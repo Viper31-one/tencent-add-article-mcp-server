@@ -98,7 +98,7 @@
 
 ## 相关链接
 
-- [项目地址](https://github.com/your-username/tencent-add-article-mcp-server)
-- [问题反馈](https://github.com/your-username/tencent-add-article-mcp-server/issues)
-- [功能建议](https://github.com/your-username/tencent-add-article-mcp-server/discussions)
+- [项目地址](https://github.com/Viper31-one/tencent-add-article-mcp-server)
+- [问题反馈](https://github.com/Viper31-one/tencent-add-article-mcp-server/issues)
+- [功能建议](https://github.com/Viper31-one/tencent-add-article-mcp-server/discussions)
 - [贡献指南](CONTRIBUTING.md) 
