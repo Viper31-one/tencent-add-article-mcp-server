@@ -1,0 +1,53 @@
+spring:
+  application:
+    name: tencent-add-article-mcp-server
+  main:
+    web-application-type: none
+    banner-mode: off
+  ai:
+    mcp:
+      server:
+        name: tencent-add-article-mcp-server
+        version: 0.0.3
+        stdio: true
+
+logging:
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+  level:
+    com.viper31: DEBUG
+    org.springframework.ai: INFO
+  file:
+    name: data/log/${spring.application.name}.log
+    max-size: 10MB
+    max-history: 30
+
+server:
+  servlet:
+    encoding:
+      charset: UTF-8
+      force: true
+      enabled: true
+
+# 腾讯云开发者社区 API 配置
+tencent:
+  api:
+    # 请替换为你的腾讯云开发者社区 Cookie
+    # 获取方法：
+    # 1. 登录 https://cloud.tencent.com/developer
+    # 2. 打开浏览器开发者工具 (F12)
+    # 3. 在 Network 标签页中找到任意请求
+    # 4. 复制请求头中的 Cookie 值
+    cookie: "请替换为你的Cookie"
+    
+    # API 基础配置
+    base-url: "https://cloud.tencent.com/developer/api"
+    timeout: 30000  # 30秒超时
+    
+    # 文章发布默认配置
+    article:
+      default-classify-id: 2      # 默认分类ID
+      default-tag-id: 18126      # 默认标签ID
+      default-source-type: 1     # 默认来源类型 (1: 原创)
+      default-ban-comment: 0     # 默认是否开启评论 (0: 开启, 1: 关闭)
+      default-close-text-link: 0 # 默认是否关闭文本链接 (0: 开启, 1: 关闭) 
